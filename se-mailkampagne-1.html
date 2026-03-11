@@ -7,6 +7,83 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ─── Login screen ─── */
+    #login-screen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    #login-screen.hidden { display: none; }
+    .login-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+      width: 100%;
+      max-width: 360px;
+      backdrop-filter: blur(10px);
+    }
+    .login-logo {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 28px;
+    }
+    .login-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 6px;
+    }
+    .login-subtitle {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 32px;
+    }
+    .login-input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-size: 18px;
+      letter-spacing: 4px;
+      text-align: center;
+      outline: none;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .login-input::placeholder { letter-spacing: 1px; color: rgba(255,255,255,0.3); font-size: 14px; }
+    .login-input:focus { border-color: rgba(255,255,255,0.4); }
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      background: #3b82f6;
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-btn:hover { background: #2563eb; }
+    .login-error {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #f87171;
+      min-height: 20px;
+    }
+    #dashboard { display: none; }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #f4f6f9;
@@ -357,6 +434,8 @@
 </head>
 <body>
 
+<div id="dashboard">
+
 <!-- ═══ HEADER ═══ -->
 <div class="header">
   <div class="header-top">
@@ -664,6 +743,46 @@
 <div class="page-footer">
   Nordic Health Group · SE Mailkampagne 1 · Data fra Pabau · Opdateret 11. marts 2026
 </div>
+
+</div><!-- /dashboard -->
+
+<!-- ═══ LOGIN SCREEN ═══ -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Nordic Health Group</div>
+    <div class="login-title">SE Mailkampagne 1</div>
+    <div class="login-subtitle">Indtast adgangskode for at se rapporten</div>
+    <input
+      id="code-input"
+      class="login-input"
+      type="password"
+      placeholder="Adgangskode"
+      autocomplete="off"
+      autofocus
+    />
+    <button class="login-btn" onclick="checkCode()">Åbn rapport →</button>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
+<script>
+  // Allow Enter key to submit
+  document.getElementById('code-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkCode();
+  });
+
+  function checkCode() {
+    const input = document.getElementById('code-input').value.trim();
+    if (input === 'nhg26') {
+      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('dashboard').style.display = 'block';
+    } else {
+      document.getElementById('login-error').textContent = 'Forkert kode — prøv igen.';
+      document.getElementById('code-input').value = '';
+      document.getElementById('code-input').focus();
+    }
+  }
+</script>
 
 </body>
 </html>
