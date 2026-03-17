@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SE Mail Campaign 1 â Dashboard</title>
+<title>SE Mail Campaign 1 – Dashboard</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-/* âââ Login screen âââ */
+/* --- Login screen --- */
 #login-screen { position: fixed; inset: 0; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%); display: flex; align-items: center; justify-content: center; z-index: 9999; }
 #login-screen.hidden { display: none; }
 .login-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 48px 40px; text-align: center; width: 100%; max-width: 360px; backdrop-filter: blur(10px); }
@@ -89,12 +89,23 @@ td.price { font-weight: 700; color: #0f3460; text-align: right; }
 </head>
 <body>
 
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Nordic Health Group</div>
+    <div class="login-title">Campaign Dashboard</div>
+    <div class="login-subtitle">Enter password to view report</div>
+    <input class="login-input" id="pwd-input" type="password" placeholder="Enter password" />
+    <button class="login-btn" onclick="doLogin()">View Report</button>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
 <div id="dashboard">
   <div class="header">
     <div class="header-top">
       <div>
         <h1>SE Mail Campaign 1</h1>
-        <div class="subtitle">5 stycken SuperPresentkort Ã¡ 1,000 kr â March 2026</div>
+        <div class="subtitle">5 stycken SuperPresentkort á 1 000 kr – March 2026</div>
       </div>
       <div class="badge">
         <span class="dot"></span> Completed
@@ -104,131 +115,216 @@ td.price { font-weight: 700; color: #0f3460; text-align: right; }
       <div class="meta-item">Sent <strong>9 March 2026</strong></div>
       <div class="meta-item">List <strong>Sweden</strong></div>
       <div class="meta-item">Type <strong>One-Time Newsletter</strong></div>
-      <div class="meta-item">Data hentet <strong>16. marts 2026</strong></div>
+      <div class="meta-item">Data hentet <strong>17. marts 2026</strong></div>
     </div>
   </div>
+
   <div class="container">
-    <div class="section-title">ð§ Email Performance</div>
-    <div class="kpi-grid" style="margin-bottom: 36px;">
-      <div class="kpi-card blue"><div class="kpi-label">Sent</div><div class="kpi-value">2.099</div><div class="kpi-label">Delivered</div><div class="kpi-value">1.998</div><div class="kpi-sub">95,2% leveringsrate</div></div>
-      <div class="kpi-card green"><div class="kpi-label">Open Rate</div><div class="kpi-value">52,4%</div><div class="kpi-sub">1.099 Ã¥bninger</div></div>
-      <div class="kpi-card violet"><div class="kpi-label">Click Rate</div><div class="kpi-value">4,1%</div><div class="kpi-sub">87 unikke klik</div></div>
-      <div class="kpi-card amber"><div class="kpi-label">Bounce Rate</div><div class="kpi-value">4,4%</div><div class="kpi-sub">93 bounces</div></div>
-      <div class="kpi-card rose"><div class="kpi-label">Unsubscribes</div><div class="kpi-value">0</div><div class="kpi-sub">0% unsubscribe rate</div></div>
+    <div class="section-title">📧 Email Performance</div>
+    <div class="kpi-grid">
+      <div class="kpi-card blue">
+        <div class="kpi-label">Sendt</div>
+        <div class="kpi-value">2.099</div>
+        <div class="kpi-label" style="margin-top:14px;">Leveret</div>
+        <div class="kpi-value" style="font-size:26px;">1.998</div>
+        <div class="kpi-sub">95,2% leveringsrate</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">Open Rate</div>
+        <div class="kpi-value">52,7%</div>
+        <div class="kpi-sub">1.107 åbninger</div>
+      </div>
+      <div class="kpi-card violet">
+        <div class="kpi-label">Click Rate</div>
+        <div class="kpi-value">4,1%</div>
+        <div class="kpi-sub">87 unikke klik</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-label">Bounce Rate</div>
+        <div class="kpi-value">4,4%</div>
+        <div class="kpi-sub">93 bounces</div>
+      </div>
+      <div class="kpi-card rose">
+        <div class="kpi-label">Afmeldinger</div>
+        <div class="kpi-value">0</div>
+        <div class="kpi-sub">0,0% unsubscribe rate</div>
+      </div>
     </div>
-      <div class="kpi-card green"><div class="kpi-label">Open Rate</div><div class="kpi-value">52,4%</div><div class="kpi-sub">1.099 Ã¥bninger</div></div>
-      <div class="kpi-card violet"><div class="kpi-label">Click Rate</div><div class="kpi-value">4,1%</div><div class="kpi-sub">87 unikke klik</div></div>
-      <div class="kpi-card amber"><div class="kpi-label">Bounce Rate</div><div class="kpi-value">4,4%</div><div class="kpi-sub">93 bounces</div></div>
-      <div class="kpi-card rose"><div class="kpi-label">Unsubscribes</div><div class="kpi-value">0</div><div class="kpi-sub">0% unsubscribe rate</div></div>
-    </div>
+
     <div class="funnel-section">
       <div class="funnel-title">Email Funnel</div>
       <div class="funnel-steps">
-        <div class="funnel-row"><div class="funnel-lbl">Sent</div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:100.0%; background:#3b82f6;">2.099</div></div><div class="funnel-pct">100,0%</div></div>
-        <div class="funnel-row"><div class="funnel-lbl">Delivered</div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:95.2%; background:#14b8a6;">1.998</div></div><div class="funnel-pct">95,2%</div></div>
-        <div class="funnel-row"><div class="funnel-lbl">Opened</div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:52.4%; background:#22c55e;">1.099</div></div><div class="funnel-pct">52,4%</div></div>
-        <div class="funnel-row"><div class="funnel-lbl">Clicked</div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:4.1%; background:#8b5cf6;">87</div></div><div class="funnel-pct">4,1%</div></div>
-        <div class="funnel-row"><div class="funnel-lbl">Booked</div><div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:2.76%; background:#f59e0b; min-width: 32px;">58</div></div><div class="funnel-pct">2,8%</div></div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Sendt</div>
+          <div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:100%; background:#3b82f6;">2.099</div></div>
+          <div class="funnel-pct">100,0%</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Leveret</div>
+          <div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:95.2%; background:#14b8a6;">1.998</div></div>
+          <div class="funnel-pct">95,2%</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Åbnet</div>
+          <div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:52.7%; background:#22c55e;">1.107</div></div>
+          <div class="funnel-pct">52,7%</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Klikket</div>
+          <div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:4.1%; background:#8b5cf6;">87</div></div>
+          <div class="funnel-pct">4,1%</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Booket aftale</div>
+          <div class="funnel-bar-bg"><div class="funnel-bar-fill" style="width:3.72%; background:#f59e0b; min-width:32px;">78</div></div>
+          <div class="funnel-pct">3,7%</div>
+        </div>
       </div>
     </div>
-    </div>
-    <div class="section-title">ð° Revenue Generated</div>
-        <div class="revenue-section">
-      <div class="revenue-main"><div class="label">Total booked revenue</div><div class="amount">1.126.500<span class="currency">SEK</span></div></div>
+
+    <div class="section-title">💰 Revenue Generated</div>
+    <div class="revenue-section">
+      <div class="revenue-main">
+        <div class="label">Total booked revenue</div>
+        <div class="amount">1.402.500<span class="currency">SEK</span></div>
+      </div>
       <div class="revenue-divider"></div>
       <div class="revenue-stats">
-        <div class="revenue-stat"><div class="val">58</div><div class="lbl">Booked appointments</div></div>
-        <div class="revenue-stat"><div class="val">22.530</div><div class="lbl">Avg. per appointment (SEK)</div></div>
-        <div class="revenue-stat"><div class="val">537</div><div class="lbl">Revenue per sent (SEK)</div></div>
+        <div class="revenue-stat">
+          <div class="val">78</div>
+          <div class="lbl">Booked appointments</div>
+        </div>
+        <div class="revenue-stat">
+          <div class="val">22.621</div>
+          <div class="lbl">Avg. per appointment (SEK)</div>
+        </div>
+        <div class="revenue-stat">
+          <div class="val">668</div>
+          <div class="lbl">Revenue per sent (SEK)</div>
+        </div>
       </div>
     </div>
-      <div class="revenue-divider"></div>
-      <div class="revenue-stats">
-        <div class="revenue-stat"><div class="val">53</div><div class="lbl">Booked appointments</div></div>
-        <div class="revenue-stat"><div class="val">23.138</div><div class="lbl">Avg. per appointment (SEK)</div></div>
-        <div class="revenue-stat"><div class="val">518</div><div class="lbl">Revenue per sent (SEK)</div></div>
+
+    <div class="section-title">📅 Booked Appointments</div>
+    <div class="table-section">
+      <div class="table-header">
+        <h3>Appointments from the campaign</h3>
+        <span class="count-badge">78 aftaler</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Client</th>
+            <th>City</th>
+            <th>Service</th>
+            <th style="text-align:right;">Value (SEK)</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr><td>12/03/2026</td><td>Elin Lidholm</td><td><span class="location-tag">Umeå</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>12/03/2026</td><td>Sofia Carlson</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum 1 ben</span></td><td class="price">11.000</td></tr>
+        <tr><td>13/03/2026</td><td>Cecilia Frick</td><td><span class="location-tag">Malmö</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>13/03/2026</td><td>Helena Skårsjö</td><td><span class="location-tag">Örebro</span></td><td><span class="service-tag">Fleb./Skum 2 ben & Laser 1 ben</span></td><td class="price">30.000</td></tr>
+        <tr><td>13/03/2026</td><td>Isabel Ccorahua Caceres</td><td><span class="location-tag">Malmö</span></td><td><span class="consult-tag">Förundersökning – 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>16/03/2026</td><td>Katarina Stenvinkel</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Förundersökning – 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>16/03/2026</td><td>Leila Juselius</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Förundersökning – 15min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>19/03/2026</td><td>Katarina Stenvinkel</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum 1 ben</span></td><td class="price">11.000</td></tr>
+        <tr><td>19/03/2026</td><td>Pelle Mellin</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>19/03/2026</td><td>Katinka Levin</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Förundersökning – 15min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>23/03/2026</td><td>Samar Nazar Saleem</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum 1 ben</span></td><td class="price">11.000</td></tr>
+        <tr><td>23/03/2026</td><td>AnnSofie Gustafsson</td><td><span class="location-tag">Gävle</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>23/03/2026</td><td>Filippa Lackner</td><td><span class="location-tag">Malmö</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>23/03/2026</td><td>Serap Taskin</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum 1 ben</span></td><td class="price">11.000</td></tr>
+        <tr><td>23/03/2026</td><td>Lena Lundgren</td><td><span class="location-tag">Malmö</span></td><td><span class="consult-tag">Förundersökning – 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>23/03/2026</td><td>Eva Arato</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Förundersökning – 15min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>23/03/2026</td><td>Eva Bengtsson</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Förundersökning – 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>23/03/2026</td><td>Carolina Lingvall</td><td><span class="location-tag">Gävle</span></td><td><span class="consult-tag">Förundersökning – 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>23/03/2026</td><td>Stefan Karlsson</td><td><span class="location-tag">Norrköping</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>23/03/2026</td><td>Marinette Wall</td><td><span class="location-tag">Norrköping</span></td><td><span class="consult-tag">Förundersökning – 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>24/03/2026</td><td>Sofia Kavén</td><td><span class="location-tag">Södertälje</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>24/03/2026</td><td>Deniz Yazir</td><td><span class="location-tag">Västerås</span></td><td><span class="consult-tag">Förundersökning – 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>25/03/2026</td><td>Erik Arnesson</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>25/03/2026</td><td>Anna Dahlqvist</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>25/03/2026</td><td>Åsa Bergold</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>25/03/2026</td><td>Annica Jäverling</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>26/03/2026</td><td>Kristina Dabrowska</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Förundersökning – 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>26/03/2026</td><td>Jonas Kraenzmer</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>26/03/2026</td><td>Linn Rehnström</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Förundersökning – 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>27/03/2026</td><td>Madelaine Gullberg</td><td><span class="location-tag">Örebro</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>27/03/2026</td><td>Amir Nickel</td><td><span class="location-tag">Malmö</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>30/03/2026</td><td>Johan Hellman</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>30/03/2026</td><td>Jessica Sjöberg</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Laser 2 ben & Fleb./Skum 1 ben</span></td><td class="price">31.500</td></tr>
+        <tr><td>30/03/2026</td><td>Lisbeth Eggefors</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum 1 ben</span></td><td class="price">11.000</td></tr>
+        <tr><td>30/03/2026</td><td>Angelique Karlsson</td><td><span class="location-tag">Skövde</span></td><td><span class="service-tag">Fleb./Skum 1 ben</span></td><td class="price">11.000</td></tr>
+        <tr><td>30/03/2026</td><td>Victoria Watz</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Förundersökning – 15min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>01/04/2026</td><td>Joel Westin Nordin</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>01/04/2026</td><td>Eva Nilsson</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>01/04/2026</td><td>Maria Gustavsson</td><td><span class="location-tag">Skövde</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>01/04/2026</td><td>Julia Johansson</td><td><span class="location-tag">Norrköping</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>02/04/2026</td><td>Britt Granum</td><td><span class="location-tag">Karlstad</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>02/04/2026</td><td>Johanna Weisz</td><td><span class="location-tag">Karlstad</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>02/04/2026</td><td>Åsa Engström</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>08/04/2026</td><td>Mimmie Lundqvist</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>08/04/2026</td><td>Johanna Håkansson</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>08/04/2026</td><td>Maria Lithammer</td><td><span class="location-tag">Uppsala</span></td><td><span class="consult-tag">Förundersökning – 15min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>10/04/2026</td><td>Yalda Brolin</td><td><span class="location-tag">Göteborg</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>10/04/2026</td><td>Joacim Eklund</td><td><span class="location-tag">Jönköping</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>13/04/2026</td><td>Katja Grape</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>14/04/2026</td><td>Jenny Broman</td><td><span class="location-tag">Göteborg</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>14/04/2026</td><td>Britt Marie Collby</td><td><span class="location-tag">Göteborg</span></td><td><span class="service-tag">Fleb./Skum 1 ben</span></td><td class="price">11.000</td></tr>
+        <tr><td>14/04/2026</td><td>Mari Vesterberg</td><td><span class="location-tag">Luleå</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>15/04/2026</td><td>Eva Berglind</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>16/04/2026</td><td>Carina Gustafsson</td><td><span class="location-tag">Kalmar</span></td><td><span class="consult-tag">Förundersökning – 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>20/04/2026</td><td>Ingalill Vikström</td><td><span class="location-tag">Gävle</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>20/04/2026</td><td>Fanny Skarp</td><td><span class="location-tag">Gävle</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>20/04/2026</td><td>Maarit Jussi</td><td><span class="location-tag">Gävle</span></td><td><span class="service-tag">Fleb./Skum 2 ben & Laser 1 ben</span></td><td class="price">30.000</td></tr>
+        <tr><td>20/04/2026</td><td>Anna Greis</td><td><span class="location-tag">Gävle</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>21/04/2026</td><td>Andrea Albornoz</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>21/04/2026</td><td>Anna Wännerdahl</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum 1 ben</span></td><td class="price">11.000</td></tr>
+        <tr><td>21/04/2026</td><td>Karoline Kolaas</td><td><span class="location-tag">Göteborg</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>22/04/2026</td><td>Frida Klintdahl</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum 2 ben & Laser 1 ben</span></td><td class="price">30.000</td></tr>
+        <tr><td>28/04/2026</td><td>Linda Börjesson</td><td><span class="location-tag">Göteborg</span></td><td><span class="service-tag">Fleb./Skum 2 ben & Laser 1 ben</span></td><td class="price">30.000</td></tr>
+        <tr><td>28/04/2026</td><td>Neil Test</td><td><span class="location-tag">Göteborg</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>04/05/2026</td><td>Elin Bergström</td><td><span class="location-tag">Gävle</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>05/05/2026</td><td>Charlotta Lidqvist</td><td><span class="location-tag">Göteborg</span></td><td><span class="service-tag">Fleb./Skum 1 ben</span></td><td class="price">11.000</td></tr>
+        <tr><td>05/05/2026</td><td>Erica Ledin Stigerud</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>05/05/2026</td><td>Titti Bergholtz</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>05/05/2026</td><td>Lena Holmberg</td><td><span class="location-tag">Västerås</span></td><td><span class="service-tag">Fleb./Skum 1 ben</span></td><td class="price">11.000</td></tr>
+        <tr><td>07/05/2026</td><td>Jennie Kempe-Kallhed</td><td><span class="location-tag">Jönköping</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>07/05/2026</td><td>Sofia Eklund</td><td><span class="location-tag">Jönköping</span></td><td><span class="service-tag">Fleb./Skum 2 ben & Laser 1 ben</span></td><td class="price">30.000</td></tr>
+        <tr><td>07/05/2026</td><td>Leila Juselius</td><td><span class="location-tag">Stockholm</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>11/05/2026</td><td>Olha Koshyn</td><td><span class="location-tag">Norrköping</span></td><td><span class="service-tag">Fleb./Skum & Laser 1 ben</span></td><td class="price">27.000</td></tr>
+        <tr><td>19/05/2026</td><td>Reijo Aho</td><td><span class="location-tag">Västerås</span></td><td><span class="consult-tag">Förundersökning – 15min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">–</td></tr>
+        <tr><td>21/05/2026</td><td>Anette Wegat</td><td><span class="location-tag">Jönköping</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>22/05/2026</td><td>Sarah Ekerbring</td><td><span class="location-tag">Örebro</span></td><td><span class="service-tag">Fleb./Skum & Laser 2 ben</span></td><td class="price">34.500</td></tr>
+        <tr><td>10/06/2026</td><td>Kristina Wallin</td><td><span class="location-tag">Uppsala</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        <tr><td>16/06/2026</td><td>Shqipe Ceranaj</td><td><span class="location-tag">Västerås</span></td><td><span class="service-tag">Fleb/Skum 2 ben</span></td><td class="price">14.000</td></tr>
+        </tbody>
+      </table>
+      <div class="table-footer">
+        <span class="total-label">Total Revenue</span>
+        <span class="total-value">1.402.500 SEK</span>
       </div>
     </div>
-    <div class="section-title">ð Booked Appointments</div>
-        <div class="table-section">
-      <div class="table-header"><h3>Appointments from the campaign</h3><span class="count-badge">58 aftaler</span></div>
-      <table><thead><tr><th>Date</th><th>Client</th><th>City</th><th>Service</th><th style="text-align:right;">Value (SEK)</th></tr></thead>
-      <tbody>
-        <tr><td>12/03/2026</td><td>Elin Lidholm</td><td><span class="location-tag">UmeÃ¥</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>12/03/2026</td><td>Sofia Carlson</td><td><span class="location-tag">Stockholm</span></td><td>Fleb./Skum 1 leg</td><td class="price">11.000</td></tr>
-        <tr><td>13/03/2026</td><td>Helena SkÃ¥rsjÃ¶</td><td><span class="location-tag">Ãrebro</span></td><td>Fleb./Skum 2 legs & Laser 1 leg</td><td class="price">30.000</td></tr>
-        <tr><td>13/03/2026</td><td>Cecilia Frick</td><td><span class="location-tag">MalmÃ¶</span></td><td>Fleb/Skum 2 legs</td><td class="price">14.000</td></tr>
-        <tr><td>13/03/2026</td><td>Isabel Ccorahua Caceres</td><td><span class="location-tag">MalmÃ¶</span></td><td><span class="consult-tag">Pre-consultation â 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">â</td></tr>
-        <tr><td>16/03/2026</td><td>Katarina Stenvinkel</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Pre-consultation â 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">â</td></tr>
-        <tr><td>16/03/2026</td><td>Leila Juselius</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Pre-consultation â 15min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">â</td></tr>
-        <tr><td>19/03/2026</td><td>Pelle Mellin</td><td><span class="location-tag">Stockholm</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>23/03/2026</td><td>Samar Nazar Saleem</td><td><span class="location-tag">Stockholm</span></td><td>Fleb./Skum 1 leg</td><td class="price">11.000</td></tr>
-        <tr><td>23/03/2026</td><td>AnnSofie Gustafsson</td><td><span class="location-tag">GÃ¤vle</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>23/03/2026</td><td>Filippa Lackner</td><td><span class="location-tag">MalmÃ¶</span></td><td>Fleb./Skum & Laser 2 legs</td><td class="price">34.500</td></tr>
-        <tr><td>23/03/2026</td><td>Serap Taskin</td><td><span class="location-tag">Stockholm</span></td><td>Fleb./Skum 1 leg</td><td class="price">11.000</td></tr>
-        <tr><td>23/03/2026</td><td>Eva Bengtsson</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Pre-consultation â 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">â</td></tr>
-        <tr><td>23/03/2026</td><td>Carolina Lingvall</td><td><span class="location-tag">GÃ¤vle</span></td><td><span class="consult-tag">Pre-consultation â 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">â</td></tr>
-        <tr><td>23/03/2026</td><td>Stefan Karlsson</td><td><span class="location-tag">NorrkÃ¶ping</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>23/03/2026</td><td>Marinette Wall</td><td><span class="location-tag">NorrkÃ¶ping</span></td><td><span class="consult-tag">Pre-consultation â 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">â</td></tr>
-        <tr><td>24/03/2026</td><td>Sofia KavÃ©n</td><td><span class="location-tag">SÃ¶dertÃ¤lje</span></td><td>Fleb/Skum 2 legs</td><td class="price">14.000</td></tr>
-        <tr><td>25/03/2026</td><td>Erik Arnesson</td><td><span class="location-tag">Stockholm</span></td><td>Fleb./Skum & Laser 2 legs</td><td class="price">34.500</td></tr>
-        <tr><td>25/03/2026</td><td>Anna Dahlqvist</td><td><span class="location-tag">Stockholm</span></td><td>Fleb/Skum 2 legs</td><td class="price">14.000</td></tr>
-        <tr><td>25/03/2026</td><td>Ãsa Bergold</td><td><span class="location-tag">Stockholm</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>25/03/2026</td><td>Annica JÃ¤verling</td><td><span class="location-tag">Stockholm</span></td><td>Fleb/Skum 2 legs</td><td class="price">14.000</td></tr>
-        <tr><td>26/03/2026</td><td>Kristina Dabrowska</td><td><span class="location-tag">Stockholm</span></td><td><span class="consult-tag">Pre-consultation â 20min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">â</td></tr>
-        <tr><td>26/03/2026</td><td>Jonas Kraenzmer</td><td><span class="location-tag">Stockholm</span></td><td>Fleb/Skum 2 legs</td><td class="price">14.000</td></tr>
-        <tr><td>27/03/2026</td><td>Madelaine Gullberg</td><td><span class="location-tag">Ãrebro</span></td><td>Fleb/Skum 2 legs</td><td class="price">14.000</td></tr>
-        <tr><td>27/03/2026</td><td>Amir Nickel</td><td><span class="location-tag">MalmÃ¶</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>30/03/2026</td><td>Johan Hellman</td><td><span class="location-tag">Stockholm</span></td><td>Fleb./Skum & Laser 2 legs</td><td class="price">34.500</td></tr>
-        <tr><td>30/03/2026</td><td>Angelique Karlsson</td><td><span class="location-tag">SkÃ¶vde</span></td><td>Fleb./Skum 1 leg</td><td class="price">11.000</td></tr>
-        <tr><td>01/04/2026</td><td>Maria Gustavsson</td><td><span class="location-tag">SkÃ¶vde</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>01/04/2026</td><td>Julia Johansson</td><td><span class="location-tag">NorrkÃ¶ping</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>02/04/2026</td><td>Britt Granum</td><td><span class="location-tag">Karlstad</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>08/04/2026</td><td>Mimmie Lundqvist</td><td><span class="location-tag">Stockholm</span></td><td>Fleb./Skum & Laser 2 legs</td><td class="price">34.500</td></tr>
-        <tr><td>08/04/2026</td><td>Johanna HÃ¥kansson</td><td><span class="location-tag">Stockholm</span></td><td>Fleb./Skum & Laser 2 legs</td><td class="price">34.500</td></tr>
-        <tr><td>08/04/2026</td><td>Maria Lithammer</td><td><span class="location-tag">Uppsala</span></td><td><span class="consult-tag">Pre-consultation â 15min</span></td><td class="price" style="color:#94a3b8; font-weight:400;">â</td></tr>
-        <tr><td>10/04/2026</td><td>Yalda Brolin</td><td><span class="location-tag">GÃ¶teborg</span></td><td>Fleb/Skum 2 legs</td><td class="price">14.000</td></tr>
-        <tr><td>10/04/2026</td><td>Joacim Eklund</td><td><span class="location-tag">JÃ¶nkÃ¶ping</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>13/04/2026</td><td>Katja Grape</td><td><span class="location-tag">Stockholm</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>14/04/2026</td><td>Jenny Broman</td><td><span class="location-tag">GÃ¶teborg</span></td><td>Fleb/Skum 2 legs</td><td class="price">14.000</td></tr>
-        <tr><td>14/04/2026</td><td>Mari Vesterberg</td><td><span class="location-tag">LuleÃ¥</span></td><td>Fleb/Skum 2 legs</td><td class="price">14.000</td></tr>
-        <tr><td>15/04/2026</td><td>Eva Berglind</td><td><span class="location-tag">Stockholm</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>20/04/2026</td><td>Ingalill VikstrÃ¶m</td><td><span class="location-tag">GÃ¤vle</span></td><td>Fleb./Skum & Laser 1 leg</td><td class="price">27.000</td></tr>
-        <tr><td>20/04/2026</td><td>Fanny Skarp</td><td><span class="location-tag">GÃ¤vle</span></td><td>Fleb./Skum & Laser 2 legs</td><td class="price">34.500</td></tr>
-        <tr><td>20/04/2026</td><td>Maarit Jussi</td><td><span class="location-tag">GÃ¤vle</span></td><td>Fleb./Skum 2 legs & Laser 1 leg</td><td class="price">30.000</td></tr>
-        <tr><td>20/04/2026</td><td>Anna Greis</td><td><span class="location-tag">GÃ¤vle</span></td><td>Fleb./Skum & Laser 2 legs</td cl\ÜÏHXÙHÍLÝÝKÌ
-ÌÝ[XH[ÜÞÝÜ[Û\ÜÏHØØ][Û]YÈÝØÚÚÛOÜÜ[ÝXÔÚÝ[HYÜÏÝÛ\ÜÏHXÙHMÝÝKÌ
-ÌÝ[Hðé\ZÝÜ[Û\ÜÏHØØ][Û]YÈÝØÚÚÛOÜÜ[ÝXÔÚÝ[HHYÏÝÛ\ÜÏHXÙHLKÝÝKÌ
-ÌÝØ\Û[HÛÛX\ÏÝÜ[Û\ÜÏHØØ][Û]YÈðíXÜÏÜÜ[ÝXÔÚÝ[H	\Ù\HYÏÝÛ\ÜÏHXÙHËÝÝÌ
-ÌÝYHÛ[ZÝÜ[Û\ÜÏHØØ][Û]YÈÝØÚÚÛOÜÜ[ÝXÔÚÝ[HYÜÈ	\Ù\HYÏÝÛ\ÜÏHXÙHÌÝÝÌ
-ÌÝ[H°í\ÜÛÛÝÜ[Û\ÜÏHØØ][Û]YÈðíXÜÏÜÜ[ÝXÔÚÝ[HYÜÈ	\Ù\HYÏÝÛ\ÜÏHXÙHÌÝÝÌ
-ÌÝZ[\ÝÝÜ[Û\ÜÏHØØ][Û]YÈðíXÜÏÜÜ[ÝXÔÚÝ[HYÜÏÝÛ\ÜÏHXÙHMÝÝ
-KÌ
-KÌÝÚ\ÝHY]\ÝÝÜ[Û\ÜÏHØØ][Û]YÈðíXÜÏÜÜ[ÝXÔÚÝ[HHYÏÝÛ\ÜÏHXÙHLKÝÝ
-KÌ
-KÌÝ\XØHY[ÝYÙ\YÝÜ[Û\ÜÏHØØ][Û]YÈÝØÚÚÛOÜÜ[ÝXÔÚÝ[H	\Ù\HYÏÝÛ\ÜÏHXÙHËÝÝ
-KÌ
-KÌÝ]H\ÚÛÝÜ[Û\ÜÏHØØ][Û]YÈÝØÚÚÛOÜÜ[ÝXÔÚÝ[HYÜÏÝÛ\ÜÏHXÙHMÝÝ
-ËÌ
-KÌÝ[YHÙ[\KRØ[YÝÜ[Û\ÜÏHØØ][Û]YÈ°íðí[ÏÜÜ[ÝXÔÚÝ[H	\Ù\HYÏÝÛ\ÜÏHXÙHËÝÝ
-ËÌ
-KÌÝÛÙXHZÛ[ÝÜ[Û\ÜÏHØØ][Û]YÈ°íðí[ÏÜÜ[ÝXÔÚÝ[HYÜÈ	\Ù\HYÏÝÛ\ÜÏHXÙHÌÝÝLKÌ
-KÌÝÛHÛÜÚ[ÝÜ[Û\ÜÏHØØ][Û]YÈÜðí[ÏÜÜ[ÝXÔÚÝ[H	\Ù\HYÏÝÛ\ÜÏHXÙHËÝÝKÌ
-KÌÝ[]HÙYØ]ÝÜ[Û\ÜÏHØØ][Û]YÈ°íðí[ÏÜÜ[ÝXÔÚÝ[HYÜÏÝÛ\ÜÏHXÙHMÝÝLÌ
-ÌÝÜ\Ý[HØ[[ÝÜ[Û\ÜÏHØØ][Û]YÈ\Ø[OÜÜ[ÝXÔÚÝ[HYÜÏÝÛ\ÜÏHXÙHMÝÝMÌ
-ÌÝÚZ\HÙ\[ZÝÜ[Û\ÜÏHØØ][Û]YÈ°éÝ\°é\ÏÜÜ[ÝXÔÚÝ[HYÜÏÝÛ\ÜÏHXÙHMÝÝÝÙOÝXO]Û\ÜÏHXKYÛÝ\Ü[Û\ÜÏHÝ[[X[Ý[ÛÚÙY][YIÜÉÜÏÜÜ[Ü[Û\ÜÏHÝ[][YHKLLÑRÏÜÜ[Ù]Ù]Ù]]Û\ÜÏHYÙKYÛÝ\ÜXÈX[ÜÝ\0­ÈÑHXZ[Ø[\ZYÛH0­È]HÛHX]H0­È\]YMX\ÚÙ]Ù]]YHÙÚ[\ØÜY[]Û\ÜÏHÙÚ[XÞ]Û\ÜÏHÙÚ[[ÙÛÈÜXÈX[ÜÝ\Ù]]Û\ÜÏHÙÚ[]]HÑHXZ[Ø[\ZYÛOÙ]]Û\ÜÏHÙÚ[\ÝX]H[\\ÜÝÛÜÈY]ÈH\ÜÙ][]YHÛÙKZ[]Û\ÜÏHÙÚ[Z[]\OH\ÜÝÛÜXÙZÛ\H\ÜÝÛÜ]]ØÛÛ\]OHÙ]]ÙØÝ\ÈÏ]ÛÛ\ÜÏHÙÚ[XÛÛXÚÏHÚXÚÐÛÙJ
-HÜ[\Ü8¡¤Ø]Û]Û\ÜÏHÙÚ[Y\ÜYHÙÚ[Y\ÜÙ]Ù]Ù]ØÜ\ØÝ[Y[Ù][[Y[RY
-	ØÛÙKZ[]	ÊKY][\Ý[\	ÚÙ^YÝÛË[Ý[ÛJHÂY
-KÙ^HOOH	Ñ[\ÊHÚXÚÐÛÙJ
-NÂJNÂ[Ý[ÛÚXÚÐÛÙJ
-HÂÛÛÝ[]HØÝ[Y[Ù][[Y[RY
-	ØÛÙKZ[]	ÊK[YK[J
-NÂY
-[]OOH	ÛÌÊHÂØÝ[Y[Ù][[Y[RY
-	ÛÙÚ[\ØÜY[ÊKÛ\ÜÓ\ÝY
-	ÚY[ÊNÂØÝ[Y[Ù][[Y[RY
-	Ù\ÚØ\	ÊKÝ[K\Ü^HH	ØØÚÉÎÂH[ÙHÂØÝ[Y[Ù][[Y[RY
-	ÛÙÚ[Y\ÜÊK^ÛÛ[H	ÕÜÛÈÛÙH8 %X\ÙHHYØZ[ÎÂØÝ[Y[Ù][[Y[RY
-	ØÛÙKZ[]	ÊK[YHH	ÉÎÂØÝ[Y[Ù][[Y[RY
-	ØÛÙKZ[]	ÊKØÝ\Ê
-NÂBBÜØÜ\ØÙOÚ[
+
+    <div class="page-footer">SE Mail Campaign 1 &mdash; Nordic Health Group &mdash; Data: 17. marts 2026</div>
+  </div>
+</div>
+
+<script>
+function doLogin() {
+  var pwd = document.getElementById('pwd-input').value;
+  if (pwd === 'nhg26') {
+    document.getElementById('login-screen').classList.add('hidden');
+    document.getElementById('dashboard').style.display = 'block';
+  } else {
+    document.getElementById('login-error').textContent = 'Forkert adgangskode. Prøv igen.';
+  }
+}
+document.getElementById('pwd-input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') doLogin();
+});
+</script>
+</body>
+</html>
